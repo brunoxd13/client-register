@@ -2,16 +2,21 @@ import React, { Component } from "react";
 import "./styles.css";
 
 import Input from "../../components/input";
-import ReactSVG from 'react-svg'
 
 class Login extends Component {
-  constructor(props) {
+  constructor(props){
     super(props);
-    this.state = {};
+
+    this.state = {
+      usuario: "",
+      senha: ""
+    };
+
+    this.handleFieldChange = this.handleFieldChange.bind(this);
   }
+  
 
   handleFieldChange(fieldId, value) {
-    console.log(`${fieldId} e ${value}`);
     this.setState({ [fieldId]: value });
   }
 
@@ -23,9 +28,8 @@ class Login extends Component {
         </div>
 
         <div className="body-login">
-          <Input type="text" placeholder="Usúario" icon="../../assets/group.svg" id="usuario" onChange={this.handleFieldChange}/>
-          <Input type="password" placeholder="Senha" icon="../../assets/group.svg" />
-          
+          <Input type="text" placeholder="Usúario" icon="icon-group" id="usuario" onChange={this.handleFieldChange}/>
+          <Input type="password" placeholder="Senha" icon="icon-lock" id="senha" onChange={this.handleFieldChange}/>
 
         </div>
       </div>

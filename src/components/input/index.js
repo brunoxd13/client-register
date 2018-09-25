@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import "./styles.css";
 
-import ReactSVG from "react-svg";
-
 class Input extends Component {
   handleChange = event => {
     const text = event.target.value;
@@ -21,7 +19,7 @@ class Input extends Component {
           value={this.props.value}
         />
 
-        <i className="fa fa-user fa-lg fa-fw" aria-hidden="true" />
+        <i className={icon} aria-hidden="true"/>
       </div>
     );
   }

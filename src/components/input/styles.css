@@ -30,8 +30,8 @@ input:focus {
 .inputWithIcon i {
   position: absolute;
   left: 0;
-  top: 8px;
+  top: 15px;
   padding: 9px 8px;
-  color: #F5F5F5;
+  color: #000000;
   transition: 0.3s;
 }

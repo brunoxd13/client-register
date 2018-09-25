@@ -16,7 +16,6 @@ class Input extends Component {
           type={type}
           placeholder={placeholder}
           onChange={this.handleChange}
-          value={this.props.value}
         />
 
         <i className={icon} aria-hidden="true"/>

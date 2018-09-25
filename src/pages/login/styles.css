@@ -4,8 +4,6 @@ html {
 
 body {
   background-image: linear-gradient(#00cc80, #003264);
-
-  /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -38,4 +36,16 @@ body {
 
 .window-login {
   height: 100%;
+}
+
+.header-login{
+  margin-top: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-header{
+  font-size: 2em;
+  color: #ffffff;
 }

@@ -25,8 +25,9 @@ class Login extends Component {
       <div className="window-login">
         <div className="header-login">
           <i className="icon-user-book icon-header" aria-hidden="true"/>
+          <p className="header-name">Clientes</p>
         </div>
-        <p className="header-name">Clientes</p>
+        
 
         <div className="body-login">
           <Input type="text" placeholder="Usúario" icon="icon-group" id="usuario" onChange={this.handleFieldChange}/>

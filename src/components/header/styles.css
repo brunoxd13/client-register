@@ -1,0 +1,17 @@
+.header {
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.icon-header {
+  float: left;
+  margin-left: 15px;
+  color: #000;
+}
+
+.text-header {
+  font-family: Nunito;
+  font-size: 24px;
+  font-weight: bold;
+}

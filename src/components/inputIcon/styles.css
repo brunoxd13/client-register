@@ -1,0 +1,37 @@
+input {
+  width: 100%;
+  border: 1px solid #F5F5F5;
+  border-radius: 4px;
+  margin: 8px 0;
+  outline: none;
+  padding: 12px;
+  box-sizing: border-box;
+  transition: 0.3s;
+  background-color: #F5F5F5;
+  font-size: 16px;
+  font-family: Nunito;
+}
+
+input:focus {
+  border-color: #0084dc;
+  background-color: #FFF;
+}
+
+.inputWithIcon input {
+  padding-left: 40px;
+  width: 100%;
+}
+
+.inputWithIcon {
+  position: relative;
+  width: 100%;
+}
+
+.inputWithIcon i {
+  position: absolute;
+  left: 0;
+  top: 15px;
+  padding: 9px 8px;
+  color: #000000;
+  transition: 0.3s;
+}

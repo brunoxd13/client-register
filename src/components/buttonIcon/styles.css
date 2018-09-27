@@ -1,0 +1,19 @@
+.btn{
+  width:100%;
+  position:relative;
+  height:48px;
+  background-color: #00CE3E;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: Nunito;
+  font-weight: bold;
+}
+
+.icon{
+  position:absolute;
+  left: 95%;
+  top:10px;
+  font-size:30px;
+}

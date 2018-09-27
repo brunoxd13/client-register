@@ -17,21 +17,8 @@ input:focus {
   background-color: #FFF;
 }
 
-.inputWithIcon input {
-  padding-left: 40px;
-  width: 100%;
-}
-
 .inputWithIcon {
   position: relative;
   width: 100%;
 }
 
-.inputWithIcon i {
-  position: absolute;
-  left: 0;
-  top: 15px;
-  padding: 9px 8px;
-  color: #000000;
-  transition: 0.3s;
-}

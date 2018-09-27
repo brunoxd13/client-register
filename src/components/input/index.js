@@ -8,7 +8,7 @@ class Input extends Component {
   };
 
   render() {
-    const { type, placeholder, icon } = this.props;
+    const { type, placeholder } = this.props;
 
     return (
       <div className="inputWithIcon">
@@ -17,8 +17,6 @@ class Input extends Component {
           placeholder={placeholder}
           onChange={this.handleChange}
         />
-
-        <i className={icon} aria-hidden="true"/>
       </div>
     );
   }

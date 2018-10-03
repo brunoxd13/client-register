@@ -12,10 +12,8 @@ class Header extends Component {
         <Link to={ backTo } className="link-icon">
           <i className="icon-header icon-arrow-left"  aria-hidden="true"/>
         </Link>
-        
-        <div style={{ display: "flex", justifyContent: "center", width: "90%", alignItems: "center" }} >
-            <p className="text-header"> {title} </p>
-        </div>
+
+        <p className="text-header"> {title} </p>
       </div>
     );
   }

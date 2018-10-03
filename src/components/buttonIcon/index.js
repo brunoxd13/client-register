@@ -7,7 +7,8 @@ class ButtonIcon extends Component {
     return (
       <div class="wrapper">
         <button className="btn btn-primary">
-          {text}
+          <span className="btn-txt">{text}</span>
+          
           <i class="icon icon-arrow-right" aria-hidden="true" />
         </button>
       </div>

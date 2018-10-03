@@ -9,11 +9,13 @@
   font-size: 16px;
   font-family: Nunito;
   font-weight: bold;
+  display: flex;
+  align-content: center;
+  align-items: center;
 }
-
+.btn-txt{
+  flex: 1;
+}
 .icon{
-  position:absolute;
-  left: 95%;
-  top:10px;
-  font-size:30px;
+  font-size:17px;
 }

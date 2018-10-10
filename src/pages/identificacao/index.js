@@ -24,7 +24,7 @@ class Identificacao extends Component {
 
   onClickBtn = () => {
     //TODO: data validation here
-    this.props.history.push("/");
+    this.props.history.push("/contato");
   };
 
   render() {

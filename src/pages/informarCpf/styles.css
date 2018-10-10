@@ -1,0 +1,15 @@
+.logo-img {
+  width: 200px;
+  height: 180px;
+  margin: 33px auto 33px auto;
+}
+
+.container-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-input-cpf-cnpj {
+  margin-bottom: 15px;
+}

@@ -36,7 +36,7 @@ class Contato extends Component {
           <div className="container-input-celular">
             <InputIcon
               className="input-celular"
-              type="text"
+              type="tel"
               placeholder="Celular"
               icon="icon-search_left"
               id="celular"
@@ -46,7 +46,7 @@ class Contato extends Component {
           <div className="container-input-email">
             <InputIcon
               className="input-email"
-              type="text"
+              type="email"
               placeholder="E-mail"
               icon="icon-message"
               id="email"

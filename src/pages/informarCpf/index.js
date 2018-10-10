@@ -40,7 +40,7 @@ class InformarCpf extends Component {
           <div className="container-input-cpf-cnpj">
             <InputIcon
               className="input-cpf-cnpj"
-              type="text"
+              type="number"
               placeholder="Informe seu CPF ou CNPJ"
               icon="icon-search_left"
               id="cpfCnpj"

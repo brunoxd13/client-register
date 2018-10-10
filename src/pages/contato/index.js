@@ -25,7 +25,7 @@ class Contato extends Component {
 
   onClickBtn = () => {
     //TODO: data validation here
-    this.props.history.push("/");
+    this.props.history.push("/endereco");
   };
 
   render() {

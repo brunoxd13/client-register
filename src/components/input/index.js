@@ -11,7 +11,7 @@ class Input extends Component {
     const { type, placeholder } = this.props;
 
     return (
-      <div className="inputWithIcon">
+      <div className="container-input">
         <input
           type={type}
           placeholder={placeholder}

@@ -1,6 +1,8 @@
-import { clickReducer } from './clickReducer';
-import { combineReducers } from 'redux';
+import { clickReducer } from "./clickReducer";
+import { clienteReducer } from "./clienteReducer";
+import { combineReducers } from "redux";
 
 export const Reducers = combineReducers({
+  clickCliente: clienteReducer,
   clickState: clickReducer
 });

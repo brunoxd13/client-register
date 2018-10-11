@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { clickIdentificacao } from "../../actions";
+
 import Header from "../../components/header";
 import Input from "../../components/input";
 import ButtonIcon from "../../components/buttonIcon";
@@ -22,12 +26,15 @@ class Identificacao extends Component {
     this.setState({ [fieldId]: value });
   }
 
-  onClickBtn = () => {
-    //TODO: data validation here
-    this.props.history.push("/contato");
-  };
-
   render() {
+    const { clickIdentificacao } = this.props;
+
+    const onClickBtn = () => {
+      //TODO: data validation here
+      clickIdentificacao(this.state.nome);
+      this.props.history.push("/contato");
+    };
+
     return (
       <div className="container-identificacao">
         <Header title="Identificação" backTo="/" />
@@ -41,11 +48,20 @@ class Identificacao extends Component {
             />
           </div>
 
-          <ButtonIcon text="Próximo" onClick={this.onClickBtn} />
+          <ButtonIcon text="Próximo" onClick={onClickBtn} />
         </div>
       </div>
     );
   }
 }
 
-export default withRouter(Identificacao);
+const mapStateToProps = store => ({
+  nome: store.clickCliente.nome
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ clickIdentificacao }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(
+  withRouter(Identificacao)
+);

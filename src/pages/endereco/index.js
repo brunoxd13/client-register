@@ -1,8 +1,13 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { clickEndereco } from "../../actions";
+
 import Header from "../../components/header";
 import Input from "../../components/input";
 import ButtonIcon from "../../components/buttonIcon";
-import { withRouter } from "react-router-dom";
 
 import "./styles.css";
 
@@ -24,12 +29,21 @@ class Endereco extends Component {
     this.setState({ [fieldId]: value });
   }
 
-  onClickBtn = () => {
-    //TODO: data validation here
-    this.props.history.push("/");
-  };
-
   render() {
+    const { clickEndereco } = this.props;
+
+    const onClickBtn = () => {
+      //TODO: data validation here
+      clickEndereco(
+        this.state.cep,
+        this.state.cidade,
+        this.state.rua,
+        this.state.bairro
+      );
+
+      // this.props.history.push("/");
+    };
+
     return (
       <div className="container-informar-endereco">
         <Header title="Endereço" backTo="/contato" />
@@ -65,10 +79,22 @@ class Endereco extends Component {
             onChange={this.handleFieldChange}
           />
         </div>
-        <ButtonIcon text="Próximo" onClick={this.onClickBtn} />
+        <ButtonIcon text="Próximo" onClick={onClickBtn} />
       </div>
     );
   }
 }
 
-export default withRouter(Endereco);
+const mapStateToProps = store => ({
+  cep: store.clickCliente.cep,
+  cidade: store.clickCliente.cidade,
+  rua: store.clickCliente.rua,
+  bairro: store.clickCliente.bairro
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ clickEndereco }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(
+  withRouter(Endereco)
+);

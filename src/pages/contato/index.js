@@ -1,8 +1,13 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { clickContato } from "../../actions";
+
 import Header from "../../components/header";
 import InputIcon from "../../components/inputIcon";
 import ButtonIcon from "../../components/buttonIcon";
-import { withRouter } from "react-router-dom";
 
 import "./styles.css";
 
@@ -11,9 +16,9 @@ class Contato extends Component {
     super(props);
 
     this.state = {
-      dtNascimento: "",
       celular: "",
-      email: ""
+      email: "",
+      dtNascimento: ""
     };
 
     this.handleFieldChange = this.handleFieldChange.bind(this);
@@ -23,12 +28,20 @@ class Contato extends Component {
     this.setState({ [fieldId]: value });
   }
 
-  onClickBtn = () => {
-    //TODO: data validation here
-    this.props.history.push("/endereco");
-  };
-
   render() {
+    const { clickContato } = this.props;
+
+    const onClickBtn = () => {
+      //TODO: data validation here
+      clickContato(
+        this.state.celular,
+        this.state.email,
+        this.state.dtNascimento
+      );
+
+      this.props.history.push("/endereco");
+    };
+
     return (
       <div className="container-informar-contatos">
         <Header title="Contato" backTo="/identificacao" />
@@ -64,11 +77,21 @@ class Contato extends Component {
             />
           </div>
 
-          <ButtonIcon text="Próximo" onClick={this.onClickBtn} />
+          <ButtonIcon text="Próximo" onClick={onClickBtn} />
         </div>
       </div>
     );
   }
 }
+const mapStateToProps = store => ({
+  celular: store.clickCliente.celular,
+  email: store.clickCliente.email,
+  dtNascimento: store.clickCliente.dtNascimento
+});
 
-export default withRouter(Contato);
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ clickContato }, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(
+  withRouter(Contato)
+);

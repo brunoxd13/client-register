@@ -8,17 +8,18 @@ class InputIcon extends Component {
   };
 
   render() {
-    const { type, placeholder, icon } = this.props;
+    const { type, placeholder, icon, value } = this.props;
 
     return (
       <div className="inputWithIcon">
         <input
           type={type}
           placeholder={placeholder}
+          value={value}
           onChange={this.handleChange}
         />
 
-        <i className={icon} aria-hidden="true"/>
+        <i className={icon} aria-hidden="true" />
       </div>
     );
   }

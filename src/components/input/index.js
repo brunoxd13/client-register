@@ -8,13 +8,14 @@ class Input extends Component {
   };
 
   render() {
-    const { type, placeholder } = this.props;
+    const { type, placeholder, value } = this.props;
 
     return (
       <div className="container-input">
         <input
           type={type}
           placeholder={placeholder}
+          value={value}
           onChange={this.handleChange}
         />
       </div>

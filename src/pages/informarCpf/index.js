@@ -12,6 +12,8 @@ import "./styles.css";
 
 import logo from "../../assets/images/logo.png";
 
+import * as ClienteAPI from "../../service/api";
+
 class InformarCpf extends Component {
   constructor(props) {
     super(props);
@@ -21,6 +23,12 @@ class InformarCpf extends Component {
     };
 
     this.handleFieldChange = this.handleFieldChange.bind(this);
+  }
+
+  componentDidMount() {
+    ClienteAPI.getClienteByCpfCnpj(30303030).then(cliente => {
+      this.setState({ cpfCnpj: cliente.dsCnpjCpf });
+    });
   }
 
   handleFieldChange(fieldId, value) {
@@ -51,6 +59,7 @@ class InformarCpf extends Component {
               placeholder="Informe seu CPF ou CNPJ"
               icon="icon-search_left"
               id="cpfCnpj"
+              value={this.state.cpfCnpj}
               onChange={this.handleFieldChange}
             />
           </div>

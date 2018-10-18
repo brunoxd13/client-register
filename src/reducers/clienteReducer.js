@@ -53,7 +53,6 @@ export const clienteReducer = (state = initialState, action) => {
         bairro: action.newBairro
       };
     default:
-      console.log("default");
       return state;
   }
 };

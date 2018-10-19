@@ -27,15 +27,15 @@ class InformarCpf extends Component {
 
   componentDidMount() {
     ClienteAPI.getClienteByCpfCnpj(30303030).then(cliente => {
-      this.setState({ cpfCnpj: cliente.dsCnpjCpf });
+      console.log(cliente);
+      //Atualizar a store com os dados do cliente.
     });
+    //TODO: on component did mount get logo image;
   }
 
   handleFieldChange(fieldId, value) {
     this.setState({ [fieldId]: value });
   }
-
-  //TODO: on component did mount get logo image;
 
   render() {
     const { clickCpfCnpj } = this.props;
@@ -43,6 +43,11 @@ class InformarCpf extends Component {
     const onClickBtn = () => {
       //TODO: data validation here
       clickCpfCnpj(this.state.cpfCnpj);
+
+      ClienteAPI.getClienteByCpfCnpj(this.state.cpfCnpj).then(cliente => {
+        //Atualizar a store com os dados do cliente.
+      });
+
       this.props.history.push("/identificacao");
     };
 
@@ -59,7 +64,6 @@ class InformarCpf extends Component {
               placeholder="Informe seu CPF ou CNPJ"
               icon="icon-search_left"
               id="cpfCnpj"
-              value={this.state.cpfCnpj}
               onChange={this.handleFieldChange}
             />
           </div>

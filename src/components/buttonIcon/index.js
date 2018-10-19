@@ -5,7 +5,7 @@ class ButtonIcon extends Component {
   render() {
     const { text, onClick } = this.props;
     return (
-      <div class="wrapper">
+      <div className="wrapper">
         <button className="btn btn-primary" onClick={onClick}>
           <span className="btn-txt">{text}</span>
 

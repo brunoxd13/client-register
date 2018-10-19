@@ -2,7 +2,8 @@ import {
   CLICK_CPF_CNPJ,
   CLICK_IDENTIFICACAO,
   CLICK_CONTATO,
-  CLICK_ENDERECO
+  CLICK_ENDERECO,
+  UPDATE_CLIENTE
 } from "../actions/actionTypes";
 
 const initialState = {
@@ -51,6 +52,19 @@ export const clienteReducer = (state = initialState, action) => {
         cidade: action.newCidade,
         rua: action.newRua,
         bairro: action.newBairro
+      };
+    case UPDATE_CLIENTE:
+      return {
+        ...state,
+        cpfCnpj: action.newCliente.newCpfCnpj,
+        nome: action.newCliente.newNome,
+        celular: action.newCliente.newCelular,
+        email: action.newCliente.newEmail,
+        dtNascimento: action.newCliente.newDtNascimento,
+        cep: action.newCliente.newCep,
+        cidade: action.newCliente.newCidade,
+        rua: action.newCliente.newRua,
+        bairro: action.newCliente.newBairro
       };
     default:
       return state;

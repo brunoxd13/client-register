@@ -3,7 +3,8 @@ import {
   CLICK_CPF_CNPJ,
   CLICK_IDENTIFICACAO,
   CLICK_CONTATO,
-  CLICK_ENDERECO
+  CLICK_ENDERECO,
+  UPDATE_CLIENTE
 } from "./actionTypes";
 
 export const clickButton = value => ({
@@ -34,4 +35,9 @@ export const clickEndereco = (cep, cidade, rua, bairro) => ({
   newCidade: cidade,
   newRua: rua,
   newBairro: bairro
+});
+
+export const updateCliente = cliente => ({
+  type: UPDATE_CLIENTE,
+  newCliente: cliente
 });

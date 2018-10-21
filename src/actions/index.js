@@ -1,16 +1,10 @@
 import {
-  CLICK_UPDATE_VALUE,
   CLICK_CPF_CNPJ,
   CLICK_IDENTIFICACAO,
   CLICK_CONTATO,
   CLICK_ENDERECO,
   UPDATE_CLIENTE
 } from "./actionTypes";
-
-export const clickButton = value => ({
-  type: CLICK_UPDATE_VALUE,
-  newValue: value
-});
 
 export const clickCpfCnpj = cpfCnpj => ({
   type: CLICK_CPF_CNPJ,

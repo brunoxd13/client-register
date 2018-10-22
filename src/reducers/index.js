@@ -1,4 +1,3 @@
-import { clickReducer } from "./clickReducer";
 import { clienteReducer } from "./clienteReducer";
 import { combineReducers } from "redux";
 

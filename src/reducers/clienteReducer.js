@@ -7,15 +7,18 @@ import {
 } from "../actions/actionTypes";
 
 const initialState = {
-  cpfCnpj: "",
-  nome: "",
-  celular: "",
-  email: "",
+  idCliente: 0,
+  dsCnpjCpf: "",
+  dsNome: "",
+  nrTelefone: "",
+  dsEmail: "",
   dtNascimento: "",
   cep: "",
-  cidade: "",
-  rua: "",
-  bairro: ""
+  dsCidade: "",
+  idCidade: 0,
+  dsEndereco: "",
+  dsBairro: "",
+  imFoto: ""
 };
 
 export const clienteReducer = (state = initialState, action) => {
@@ -56,15 +59,16 @@ export const clienteReducer = (state = initialState, action) => {
     case UPDATE_CLIENTE:
       return {
         ...state,
-        cpfCnpj: action.newCliente.newCpfCnpj,
-        nome: action.newCliente.newNome,
-        celular: action.newCliente.newCelular,
-        email: action.newCliente.newEmail,
-        dtNascimento: action.newCliente.newDtNascimento,
-        cep: action.newCliente.newCep,
-        cidade: action.newCliente.newCidade,
-        rua: action.newCliente.newRua,
-        bairro: action.newCliente.newBairro
+        ...action.newCliente
+        // cpfCnpj: action.newCliente.newCpfCnpj,
+        // nome: action.newCliente.newNome,
+        // celular: action.newCliente.newCelular,
+        // email: action.newCliente.newEmail,
+        // dtNascimento: action.newCliente.newDtNascimento,
+        // cep: action.newCliente.newCep,
+        // cidade: action.newCliente.newCidade,
+        // rua: action.newCliente.newRua,
+        // bairro: action.newCliente.newBairro
       };
     default:
       return state;

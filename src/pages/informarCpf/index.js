@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { clickCpfCnpj } from "../../actions";
+import { updateCliente } from "../../actions";
 
 import InputIcon from "../../components/inputIcon";
 import ButtonIcon from "../../components/buttonIcon";
@@ -26,10 +26,6 @@ class InformarCpf extends Component {
   }
 
   componentDidMount() {
-    ClienteAPI.getClienteByCpfCnpj(30303030).then(cliente => {
-      console.log(cliente);
-      //Atualizar a store com os dados do cliente.
-    });
     //TODO: on component did mount get logo image;
   }
 
@@ -38,17 +34,31 @@ class InformarCpf extends Component {
   }
 
   render() {
-    const { clickCpfCnpj } = this.props;
+    const {
+      idCliente,
+      dsCnpjCpf,
+      dsNome,
+      nrTelefone,
+      dsEmail,
+      dtNascimento,
+      cep,
+      dsCidade,
+      idCidade,
+      dsEndereco,
+      dsBairro,
+      imFoto,
+      updateCliente
+    } = this.props;
 
     const onClickBtn = () => {
       //TODO: data validation here
-      clickCpfCnpj(this.state.cpfCnpj);
 
       ClienteAPI.getClienteByCpfCnpj(this.state.cpfCnpj).then(cliente => {
+        updateCliente(cliente);
         //Atualizar a store com os dados do cliente.
       });
 
-      this.props.history.push("/identificacao");
+      // this.props.history.push("/identificacao");
     };
 
     return (
@@ -70,6 +80,7 @@ class InformarCpf extends Component {
           <div>
             <ButtonIcon text="Próximo" onClick={onClickBtn} />
           </div>
+          <h1>{dsNome}</h1>
         </div>
       </div>
     );
@@ -77,11 +88,22 @@ class InformarCpf extends Component {
 }
 
 const mapStateToProps = store => ({
-  cpfCnpj: store.clickCliente.cpfCnpj
+  idCliente: store.clickCliente.idCliente,
+  dsCnpjCpf: store.clickCliente.dsCnpjCpf,
+  dsNome: store.clickCliente.dsNome,
+  nrTelefone: store.clickCliente.nrTelefone,
+  dsEmail: store.clickCliente.dsEmail,
+  dtNascimento: store.clickCliente.dtNascimento,
+  cep: store.clickCliente.cep,
+  dsCidade: store.clickCliente.dsCidade,
+  idCidade: store.clickCliente.idCidade,
+  dsEndereco: store.clickCliente.dsEndereco,
+  dsBairro: store.clickCliente.dsBairro,
+  imFoto: store.clickCliente.imFoto
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ clickCpfCnpj }, dispatch);
+  bindActionCreators({ updateCliente }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(
   withRouter(InformarCpf)

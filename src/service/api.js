@@ -7,17 +7,26 @@ const headers = {
 export const getClienteByCpfCnpj = cpfCnpj =>
   fetch(`${api}/cliente/cpfcnpj/${cpfCnpj}`, { headers })
     .then(res => res.json())
-    .then(data => data);
+    .then(data => data)
+    .catch(error => {
+      console.warn(error);
+    });
 
 export const getCidadeByCep = cep =>
   fetch(`${api}/cidade/cep/${cep}`, { headers })
     .then(res => res.json())
-    .then(data => data);
+    .then(data => data)
+    .catch(error => {
+      console.warn(error);
+    });
 
 export const getImagemLogo = () =>
   fetch(`${api}/imagem/logo`, { headers })
     .then(res => res.json())
-    .then(data => data);
+    .then(data => data)
+    .catch(error => {
+      console.warn(error);
+    });
 
 export const createCliente = cliente =>
   fetch(`${api}/cliente/`, {
@@ -29,7 +38,10 @@ export const createCliente = cliente =>
     body: JSON.stringify({ cliente })
   })
     .then(res => res.json())
-    .then(data => data);
+    .then(data => data)
+    .catch(error => {
+      console.warn(error);
+    });
 
 export const updateCliente = cliente =>
   fetch(`${api}/cliente/${cliente.id}`, {
@@ -41,4 +53,7 @@ export const updateCliente = cliente =>
     body: JSON.stringify({ cliente })
   })
     .then(res => res.json())
-    .then(data => data);
+    .then(data => data)
+    .catch(error => {
+      console.warn(error);
+    });

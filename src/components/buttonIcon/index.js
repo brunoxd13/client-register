@@ -9,7 +9,7 @@ class ButtonIcon extends Component {
         <button className="btn btn-primary" onClick={onClick}>
           <span className="btn-txt">{text}</span>
 
-          <i class="icon icon-arrow-right" aria-hidden="true" />
+          <i className="icon icon-arrow-right" aria-hidden="true" />
         </button>
       </div>
     );

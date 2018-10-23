@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { clickContato } from "../../actions";
+import { updateCliente } from "../../actions";
 
 import Header from "../../components/header";
 import InputIcon from "../../components/inputIcon";
@@ -16,28 +16,33 @@ class Contato extends Component {
     super(props);
 
     this.state = {
-      celular: "",
-      email: "",
+      nrTelefone: "",
+      dsEmail: "",
       dtNascimento: ""
     };
 
     this.handleFieldChange = this.handleFieldChange.bind(this);
   }
 
+  componentDidMount() {
+    this.setState({
+      nrTelefone: this.props.nrTelefone,
+      dsEmail: this.props.dsEmail,
+      dtNascimento: this.props.dtNascimento
+    });
+  }
+
   handleFieldChange(fieldId, value) {
     this.setState({ [fieldId]: value });
+    updateCliente(this.state);
   }
 
   render() {
-    const { clickContato } = this.props;
+    const { updateCliente } = this.props;
 
     const onClickBtn = () => {
       //TODO: data validation here
-      clickContato(
-        this.state.celular,
-        this.state.email,
-        this.state.dtNascimento
-      );
+      updateCliente(this.state);
 
       this.props.history.push("/endereco");
     };
@@ -52,7 +57,8 @@ class Contato extends Component {
               type="tel"
               placeholder="Celular"
               icon="icon-search_left"
-              id="celular"
+              id="nrTelefone"
+              value={this.state.nrTelefone}
               onChange={this.handleFieldChange}
             />
           </div>
@@ -62,7 +68,8 @@ class Contato extends Component {
               type="email"
               placeholder="E-mail"
               icon="icon-message"
-              id="email"
+              id="dsEmail"
+              value={this.state.dsEmail}
               onChange={this.handleFieldChange}
             />
           </div>
@@ -73,6 +80,7 @@ class Contato extends Component {
               placeholder="Data de Nascimento"
               icon="icon-calendar"
               id="dtNascimento"
+              value={this.state.dtNascimento}
               onChange={this.handleFieldChange}
             />
           </div>
@@ -84,13 +92,13 @@ class Contato extends Component {
   }
 }
 const mapStateToProps = store => ({
-  celular: store.clickCliente.celular,
-  email: store.clickCliente.email,
+  nrTelefone: store.clickCliente.nrTelefone,
+  dsEmail: store.clickCliente.dsEmail,
   dtNascimento: store.clickCliente.dtNascimento
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ clickContato }, dispatch);
+  bindActionCreators({ updateCliente }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(
   withRouter(Contato)

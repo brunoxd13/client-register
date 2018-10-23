@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { clickEndereco } from "../../actions";
+import { updateCliente } from "../../actions";
 
 import Header from "../../components/header";
 import Input from "../../components/input";
@@ -16,30 +16,37 @@ class Endereco extends Component {
     super(props);
 
     this.state = {
-      cep: "",
-      cidade: "",
-      rua: "",
-      bairro: ""
+      idCidade: 0,
+      dsCep: "",
+      dsCidade: "",
+      dsEndereco: "",
+      dsBairro: ""
     };
 
     this.handleFieldChange = this.handleFieldChange.bind(this);
   }
 
+  componentDidMount() {
+    this.setState({
+      idCidade: this.props.idCidade,
+      dsCep: this.props.dsCep,
+      dsCidade: this.props.dsCidade,
+      dsEndereco: this.props.dsEndereco,
+      dsBairro: this.props.dsBairro
+    });
+  }
+
   handleFieldChange(fieldId, value) {
     this.setState({ [fieldId]: value });
+    updateCliente(this.state);
   }
 
   render() {
-    const { clickEndereco } = this.props;
+    const { updateCliente } = this.props;
 
     const onClickBtn = () => {
       //TODO: data validation here
-      clickEndereco(
-        this.state.cep,
-        this.state.cidade,
-        this.state.rua,
-        this.state.bairro
-      );
+      updateCliente(this.state);
 
       // this.props.history.push("/");
     };
@@ -51,7 +58,8 @@ class Endereco extends Component {
           <Input
             type="text"
             placeholder="CEP"
-            id="cep"
+            id="dsCep"
+            value={this.state.dsCep}
             onChange={this.handleFieldChange}
           />
         </div>
@@ -59,7 +67,8 @@ class Endereco extends Component {
           <Input
             type="text"
             placeholder="Cidade"
-            id="cidade"
+            id="dsCidade"
+            value={this.state.dsCidade}
             onChange={this.handleFieldChange}
           />
         </div>
@@ -67,7 +76,8 @@ class Endereco extends Component {
           <Input
             type="text"
             placeholder="Rua"
-            id="rua"
+            id="dsEndereco"
+            value={this.state.dsEndereco}
             onChange={this.handleFieldChange}
           />
         </div>
@@ -75,7 +85,8 @@ class Endereco extends Component {
           <Input
             type="text"
             placeholder="Bairro"
-            id="bairro"
+            id="dsBairro"
+            value={this.state.dsBairro}
             onChange={this.handleFieldChange}
           />
         </div>
@@ -86,14 +97,14 @@ class Endereco extends Component {
 }
 
 const mapStateToProps = store => ({
-  cep: store.clickCliente.cep,
-  cidade: store.clickCliente.cidade,
-  rua: store.clickCliente.rua,
-  bairro: store.clickCliente.bairro
+  dsCep: store.clickCliente.dsCep,
+  dsCidade: store.clickCliente.dsCidade,
+  dsEndereco: store.clickCliente.dsEndereco,
+  dsBairro: store.clickCliente.dsBairro
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ clickEndereco }, dispatch);
+  bindActionCreators({ updateCliente }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(
   withRouter(Endereco)

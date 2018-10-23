@@ -19,46 +19,37 @@ class InformarCpf extends Component {
     super(props);
 
     this.state = {
-      cpfCnpj: ""
+      dsCnpjCpf: ""
     };
 
     this.handleFieldChange = this.handleFieldChange.bind(this);
   }
 
   componentDidMount() {
+    this.setState({ dsCnpjCpf: this.props.dsCnpjCpf });
     //TODO: on component did mount get logo image;
   }
 
   handleFieldChange(fieldId, value) {
     this.setState({ [fieldId]: value });
+    updateCliente(this.state);
   }
 
   render() {
-    const {
-      idCliente,
-      dsCnpjCpf,
-      dsNome,
-      nrTelefone,
-      dsEmail,
-      dtNascimento,
-      cep,
-      dsCidade,
-      idCidade,
-      dsEndereco,
-      dsBairro,
-      imFoto,
-      updateCliente
-    } = this.props;
+    const { updateCliente } = this.props;
 
     const onClickBtn = () => {
       //TODO: data validation here
 
       ClienteAPI.getClienteByCpfCnpj(this.state.cpfCnpj).then(cliente => {
-        updateCliente(cliente);
-        //Atualizar a store com os dados do cliente.
+        if (cliente) {
+          updateCliente(cliente);
+        } else {
+          updateCliente(this.state);
+        }
       });
 
-      // this.props.history.push("/identificacao");
+      this.props.history.push("/identificacao");
     };
 
     return (
@@ -73,14 +64,14 @@ class InformarCpf extends Component {
               type="number"
               placeholder="Informe seu CPF ou CNPJ"
               icon="icon-search_left"
-              id="cpfCnpj"
+              id="dsCnpjCpf"
+              value={this.state.dsCnpjCpf}
               onChange={this.handleFieldChange}
             />
           </div>
           <div>
             <ButtonIcon text="Próximo" onClick={onClickBtn} />
           </div>
-          <h1>{dsNome}</h1>
         </div>
       </div>
     );
@@ -88,18 +79,7 @@ class InformarCpf extends Component {
 }
 
 const mapStateToProps = store => ({
-  idCliente: store.clickCliente.idCliente,
-  dsCnpjCpf: store.clickCliente.dsCnpjCpf,
-  dsNome: store.clickCliente.dsNome,
-  nrTelefone: store.clickCliente.nrTelefone,
-  dsEmail: store.clickCliente.dsEmail,
-  dtNascimento: store.clickCliente.dtNascimento,
-  cep: store.clickCliente.cep,
-  dsCidade: store.clickCliente.dsCidade,
-  idCidade: store.clickCliente.idCidade,
-  dsEndereco: store.clickCliente.dsEndereco,
-  dsBairro: store.clickCliente.dsBairro,
-  imFoto: store.clickCliente.imFoto
+  dsCnpjCpf: store.clickCliente.dsCnpjCpf
 });
 
 const mapDispatchToProps = dispatch =>

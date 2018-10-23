@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { clickIdentificacao } from "../../actions";
+import { updateCliente } from "../../actions";
 
 import Header from "../../components/header";
 import Input from "../../components/input";
@@ -16,10 +16,14 @@ class Identificacao extends Component {
     super(props);
 
     this.state = {
-      nome: ""
+      dsNome: ""
     };
 
     this.handleFieldChange = this.handleFieldChange.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({ dsNome: this.props.dsNome });
   }
 
   handleFieldChange(fieldId, value) {
@@ -27,11 +31,12 @@ class Identificacao extends Component {
   }
 
   render() {
-    const { clickIdentificacao } = this.props;
+    const { updateCliente } = this.props;
 
     const onClickBtn = () => {
       //TODO: data validation here
-      clickIdentificacao(this.state.nome);
+
+      updateCliente(this.state);
       this.props.history.push("/contato");
     };
 
@@ -43,7 +48,8 @@ class Identificacao extends Component {
             <Input
               type="text"
               placeholder="Digite seu nome completo"
-              id="nome"
+              id="dsNome"
+              value={this.state.dsNome}
               onChange={this.handleFieldChange}
             />
           </div>
@@ -56,11 +62,11 @@ class Identificacao extends Component {
 }
 
 const mapStateToProps = store => ({
-  nome: store.clickCliente.nome
+  dsNome: store.clickCliente.dsNome
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ clickIdentificacao }, dispatch);
+  bindActionCreators({ updateCliente }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(
   withRouter(Identificacao)

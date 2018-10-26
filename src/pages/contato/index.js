@@ -34,7 +34,7 @@ class Contato extends Component {
 
   handleFieldChange(fieldId, value) {
     this.setState({ [fieldId]: value });
-    updateCliente(this.state);
+    this.props.updateCliente(this.state);
   }
 
   render() {

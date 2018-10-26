@@ -28,6 +28,7 @@ class Identificacao extends Component {
 
   handleFieldChange(fieldId, value) {
     this.setState({ [fieldId]: value });
+    this.props.updateCliente(this.state);
   }
 
   render() {

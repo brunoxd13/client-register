@@ -19,20 +19,25 @@ class InformarCpf extends Component {
     super(props);
 
     this.state = {
-      dsCnpjCpf: ""
+      dsCnpjCpf: "",
+      imgLogo: ""
     };
 
     this.handleFieldChange = this.handleFieldChange.bind(this);
+
+    ClienteAPI.getImagemLogo().then(image => {
+      console.log(image);
+      this.setState({ imgLogo: image });
+    });
   }
 
   componentDidMount() {
     this.setState({ dsCnpjCpf: this.props.dsCnpjCpf });
-    //TODO: on component did mount get logo image;
   }
 
   handleFieldChange(fieldId, value) {
     this.setState({ [fieldId]: value });
-    updateCliente(this.state);
+    this.props.updateCliente(this.state);
   }
 
   render() {
@@ -41,7 +46,7 @@ class InformarCpf extends Component {
     const onClickBtn = () => {
       //TODO: data validation here
 
-      ClienteAPI.getClienteByCpfCnpj(this.state.cpfCnpj).then(cliente => {
+      ClienteAPI.getClienteByCpfCnpj(this.state.dsCnpjCpf).then(cliente => {
         if (cliente) {
           updateCliente(cliente);
         } else {

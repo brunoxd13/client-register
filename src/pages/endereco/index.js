@@ -3,11 +3,11 @@ import { withRouter } from "react-router-dom";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { updateCliente } from "../../actions";
+import { updateCliente, createClienteAPI } from "../../actions";
 
 import Header from "../../components/header";
 import Input from "../../components/input";
-import ButtonIcon from "../../components/buttonIcon";
+import Button from "../../components/button";
 
 import "./styles.css";
 
@@ -38,16 +38,17 @@ class Endereco extends Component {
 
   handleFieldChange(fieldId, value) {
     this.setState({ [fieldId]: value });
-    updateCliente(this.state);
+    this.props.updateCliente(this.state);
   }
 
   render() {
-    const { updateCliente } = this.props;
+    const { updateCliente, createClienteAPI } = this.props;
 
     const onClickBtn = () => {
       //TODO: data validation here
       updateCliente(this.state);
 
+      createClienteAPI();
       // this.props.history.push("/");
     };
 
@@ -90,7 +91,34 @@ class Endereco extends Component {
             onChange={this.handleFieldChange}
           />
         </div>
-        <ButtonIcon text="Próximo" onClick={onClickBtn} />
+        <div className="container-input-numero">
+          <Input
+            type="text"
+            placeholder="Número"
+            id="dsNumero"
+            value={this.state.dsNumero}
+            onChange={this.handleFieldChange}
+          />
+        </div>
+        <div className="container-input-complemento">
+          <Input
+            type="text"
+            placeholder="Complemento"
+            id="dsComplemento"
+            value={this.state.dsComplemento}
+            onChange={this.handleFieldChange}
+          />
+        </div>
+        <div className="container-input-promocoes">
+          {/*<p>
+            <input
+              type="checkbox"
+              id="fgReceberPromocoes"
+              onChange={this.handleFieldChange}
+            />
+          </p>*/}
+        </div>
+        <Button text="Salvar" onClick={onClickBtn} />
       </div>
     );
   }
@@ -104,7 +132,7 @@ const mapStateToProps = store => ({
 });
 
 const mapDispatchToProps = dispatch =>
-  bindActionCreators({ updateCliente }, dispatch);
+  bindActionCreators({ updateCliente, createClienteAPI }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(
   withRouter(Endereco)

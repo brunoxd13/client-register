@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { updateCliente, createClienteAPI } from "../../actions";
+import * as ClienteAPI from "../../service/api";
 
 import Header from "../../components/header";
 import Input from "../../components/input";
@@ -20,10 +21,13 @@ class Endereco extends Component {
       dsCep: "",
       dsCidade: "",
       dsEndereco: "",
-      dsBairro: ""
+      dsBairro: "",
+      nrEndereco: "",
+      dsComplemento: ""
     };
 
     this.handleFieldChange = this.handleFieldChange.bind(this);
+    this.handleCepChange = this.handleCepChange.bind(this);
   }
 
   componentDidMount() {
@@ -32,12 +36,36 @@ class Endereco extends Component {
       dsCep: this.props.dsCep,
       dsCidade: this.props.dsCidade,
       dsEndereco: this.props.dsEndereco,
-      dsBairro: this.props.dsBairro
+      dsBairro: this.props.dsBairro,
+      nrEndereco: this.props.nrEndereco,
+      dsComplemento: this.props.dsComplemento
     });
   }
 
   handleFieldChange(fieldId, value) {
     this.setState({ [fieldId]: value });
+    this.props.updateCliente(this.state);
+  }
+
+  handleCepChange(fieldId, value) {
+    this.setState({ [fieldId]: value });
+
+    if (value.length >= 7) {
+      ClienteAPI.getCidadeByCep(value).then(cidade => {
+        if (typeof cidade[0] !== "undefined" && cidade[0] !== null) {
+          this.setState({
+            dsCidade: cidade[0].dsCidade,
+            idCidade: cidade[0].idCidade
+          });
+        }
+      });
+    } else {
+      this.setState({
+        dsCidade: "",
+        idCidade: 0
+      });
+    }
+
     this.props.updateCliente(this.state);
   }
 
@@ -61,7 +89,7 @@ class Endereco extends Component {
             placeholder="CEP"
             id="dsCep"
             value={this.state.dsCep}
-            onChange={this.handleFieldChange}
+            onChange={this.handleCepChange}
           />
         </div>
         <div className="container-input-cidade">
@@ -95,8 +123,8 @@ class Endereco extends Component {
           <Input
             type="text"
             placeholder="Número"
-            id="dsNumero"
-            value={this.state.dsNumero}
+            id="nrEndereco"
+            value={this.state.nrEndereco}
             onChange={this.handleFieldChange}
           />
         </div>
@@ -110,13 +138,14 @@ class Endereco extends Component {
           />
         </div>
         <div className="container-input-promocoes">
-          {/*<p>
+          <p>
             <input
               type="checkbox"
               id="fgReceberPromocoes"
               onChange={this.handleFieldChange}
             />
-          </p>*/}
+            Teste
+          </p>
         </div>
         <Button text="Salvar" onClick={onClickBtn} />
       </div>
@@ -128,7 +157,9 @@ const mapStateToProps = store => ({
   dsCep: store.clickCliente.dsCep,
   dsCidade: store.clickCliente.dsCidade,
   dsEndereco: store.clickCliente.dsEndereco,
-  dsBairro: store.clickCliente.dsBairro
+  dsBairro: store.clickCliente.dsBairro,
+  nrEndereco: store.clickCliente.nrEndereco,
+  dsComplemento: store.clickCliente.dsComplemento
 });
 
 const mapDispatchToProps = dispatch =>

@@ -17,25 +17,35 @@ const initialState = {
   idCidade: 0,
   dsEndereco: "",
   dsBairro: "",
+  nrEndereco: "",
+  dsComplemento: "",
+  fgReceberPromocoes: "true",
   imFoto: ""
 };
 
 export const clienteReducer = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_CLIENTE:
+      if (action.clear) {
+        state = initialState;
+      }
+
       return {
         ...state,
         ...action.newCliente
       };
 
     case CREATE_UPDATE_CLIENTE_API:
-      let cliente = { state };
-      console.log(cliente);
-
-      ClienteAPI.createCliente(cliente).then(res => {
-        console.log(res);
-        return res;
-      });
+      console.log(state.idCliente);
+      if (state.idCliente > 0) {
+        ClienteAPI.updateCliente(state).then(res => {
+          return res;
+        });
+      } else {
+        ClienteAPI.createCliente(state).then(res => {
+          return res;
+        });
+      }
 
     default:
       return state;

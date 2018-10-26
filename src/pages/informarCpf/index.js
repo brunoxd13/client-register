@@ -26,7 +26,6 @@ class InformarCpf extends Component {
     this.handleFieldChange = this.handleFieldChange.bind(this);
 
     ClienteAPI.getImagemLogo().then(image => {
-      console.log(image);
       this.setState({ imgLogo: image });
     });
   }
@@ -47,14 +46,15 @@ class InformarCpf extends Component {
       //TODO: data validation here
 
       ClienteAPI.getClienteByCpfCnpj(this.state.dsCnpjCpf).then(cliente => {
-        if (cliente) {
-          updateCliente(cliente);
-        } else {
-          updateCliente(this.state);
+        var clear = false;
+        if (!cliente) {
+          clear = true;
+          cliente = { dsCnpjCpf: this.state.dsCnpjCpf };
         }
-      });
 
-      this.props.history.push("/identificacao");
+        updateCliente(cliente, clear);
+        this.props.history.push("/identificacao");
+      });
     };
 
     return (

@@ -35,15 +35,24 @@ class InformarCpf extends Component {
   }
 
   handleFieldChange(fieldId, value) {
-    this.setState({ [fieldId]: value });
-    this.props.updateCliente(this.state);
+    this.setState({ [fieldId]: value }, () => {
+      this.props.updateCliente(this.state);
+    });
+  }
+
+  validateFields() {
+    return /^(\d{2}\.?\d{3}\.?\d{3}\/?\d{4}-?\d{2}|\d{3}\.?\d{3}\.?\d{3}-?\d{2})$/.test(
+      this.state.dsCnpjCpf
+    );
   }
 
   render() {
     const { updateCliente } = this.props;
 
     const onClickBtn = () => {
-      //TODO: data validation here
+      if (!this.validateFields()) {
+        return;
+      }
 
       ClienteAPI.getClienteByCpfCnpj(this.state.dsCnpjCpf).then(cliente => {
         var clear = false;

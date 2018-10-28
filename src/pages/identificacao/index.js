@@ -31,11 +31,17 @@ class Identificacao extends Component {
     this.props.updateCliente(this.state);
   }
 
+  validateFields() {
+    return /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/.test(this.state.dsNome);
+  }
+
   render() {
     const { updateCliente } = this.props;
 
     const onClickBtn = () => {
-      //TODO: data validation here
+      if (!this.validateFields()) {
+        return;
+      }
 
       updateCliente(this.state);
       this.props.history.push("/contato");

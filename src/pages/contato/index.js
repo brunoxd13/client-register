@@ -37,11 +37,22 @@ class Contato extends Component {
     this.props.updateCliente(this.state);
   }
 
+  validateFields() {
+    var telefoneValid = this.state.nrTelefone.trim().length > 0;
+    var emailValid = /[^@]+@[^\.]+\..+/.test(this.state.dsEmail);
+    var dtNascimentoValid = this.state.dtNascimento.trim().length > 0;
+
+    return telefoneValid && emailValid && dtNascimentoValid;
+  }
+
   render() {
     const { updateCliente } = this.props;
 
     const onClickBtn = () => {
-      //TODO: data validation here
+      if (!this.validateFields()) {
+        return;
+      }
+
       updateCliente(this.state);
 
       this.props.history.push("/endereco");

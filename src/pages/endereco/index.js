@@ -18,7 +18,7 @@ class Endereco extends Component {
 
     this.state = {
       idCidade: 0,
-      dsCep: "",
+      nrCep: "",
       dsCidade: "",
       dsEndereco: "",
       dsBairro: "",
@@ -33,7 +33,7 @@ class Endereco extends Component {
   componentDidMount() {
     this.setState({
       idCidade: this.props.idCidade,
-      dsCep: this.props.dsCep,
+      nrCep: this.props.nrCep,
       dsCidade: this.props.dsCidade,
       dsEndereco: this.props.dsEndereco,
       dsBairro: this.props.dsBairro,
@@ -87,8 +87,8 @@ class Endereco extends Component {
           <Input
             type="text"
             placeholder="CEP"
-            id="dsCep"
-            value={this.state.dsCep}
+            id="nrCep"
+            value={this.state.nrCep}
             onChange={this.handleCepChange}
           />
         </div>
@@ -154,7 +154,7 @@ class Endereco extends Component {
 }
 
 const mapStateToProps = store => ({
-  dsCep: store.clickCliente.dsCep,
+  nrCep: store.clickCliente.nrCep,
   dsCidade: store.clickCliente.dsCidade,
   dsEndereco: store.clickCliente.dsEndereco,
   dsBairro: store.clickCliente.dsBairro,

@@ -12,7 +12,7 @@ const initialState = {
   nrTelefone: "",
   dsEmail: "",
   dtNascimento: "",
-  dsCep: "",
+  nrCep: "",
   dsCidade: "",
   idCidade: 0,
   dsEndereco: "",

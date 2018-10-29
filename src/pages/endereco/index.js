@@ -164,7 +164,8 @@ const mapStateToProps = store => ({
   dsEndereco: store.clickCliente.dsEndereco,
   dsBairro: store.clickCliente.dsBairro,
   nrEndereco: store.clickCliente.nrEndereco,
-  dsComplemento: store.clickCliente.dsComplemento
+  dsComplemento: store.clickCliente.dsComplemento,
+  idCidade: store.clickCliente.idCidade
 });
 
 const mapDispatchToProps = dispatch =>

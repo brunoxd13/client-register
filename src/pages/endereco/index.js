@@ -52,7 +52,12 @@ class Endereco extends Component {
 
     if (value.length >= 7) {
       ClienteAPI.getCidadeByCep(value).then(cidade => {
-        if (typeof cidade[0] !== "undefined" && cidade[0] !== null) {
+        if (
+          typeof cidade !== "undefined" &&
+          cidade !== null &&
+          typeof cidade[0] !== "undefined" &&
+          cidade[0] !== null
+        ) {
           this.setState({
             dsCidade: cidade[0].dsCidade,
             idCidade: cidade[0].idCidade

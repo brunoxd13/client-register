@@ -5,6 +5,7 @@ import InformarCpf from "./pages/informarCpf";
 import Identificacao from "./pages/identificacao";
 import Contato from "./pages/contato";
 import Endereco from "./pages/endereco";
+// import Login from "./pages/login";
 
 const Routes = () => (
   <BrowserRouter>
@@ -13,6 +14,8 @@ const Routes = () => (
       <Route path="/identificacao" component={() => <Identificacao />} />
       <Route path="/contato" component={() => <Contato />} />
       <Route path="/endereco" component={() => <Endereco />} />
+      {/*<Route path="/log" component={() => <Login />} />*/}
+
       <Route path="*" component={() => <Redirect to={{ pathname: "/" }} />} />
     </Switch>
   </BrowserRouter>

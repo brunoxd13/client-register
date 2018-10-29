@@ -8,7 +8,7 @@ class Input extends Component {
   };
 
   render() {
-    const { type, placeholder, value } = this.props;
+    const { type, placeholder, value, disabled } = this.props;
 
     return (
       <div className="container-input">
@@ -17,6 +17,7 @@ class Input extends Component {
           placeholder={placeholder}
           value={value}
           onChange={this.handleChange}
+          disabled={disabled}
         />
       </div>
     );

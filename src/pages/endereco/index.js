@@ -104,6 +104,7 @@ class Endereco extends Component {
             id="dsCidade"
             value={this.state.dsCidade}
             onChange={this.handleFieldChange}
+            disabled={true}
           />
         </div>
         <div className="container-input-rua">
